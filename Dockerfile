@@ -1,22 +1,16 @@
 FROM ruby:alpine
-MAINTAINER Derek Smith <drsmith.phys@gmail.com>
+MAINTAINER Eirik Dentz Sinclair <eirikdentz@gmail.com>
 
-# Make ap dir
 RUN mkdir -p /usr/src/sidekiq
 WORKDIR /usr/src/sidekiq
 
-# ADD Gemfile
-ADD Gemfile /usr/src/sidekiq/
-ADD Gemfile.lock /usr/src/sidekiq/
+COPY Gemfile /usr/src/sidekiq/
+COPY Gemfile.lock /usr/src/sidekiq/
 
-# Install sidekiq & rack
 RUN bundle install
 
-# ADD rackup file
-ADD config.ru /usr/src/sidekiq/
-
-# ADD the docker entrypoint
-ADD docker-entrypoint.sh /
+COPY config.ru /usr/src/sidekiq/
+COPY docker-entrypoint.sh /
 
 EXPOSE 9292
 

@@ -15,6 +15,13 @@ else
     echo "REDIS_SIZE: ${REDIS_SIZE}"
 fi
 
+if [[ "${REDIS_NAMESPACE}" == "" ]]
+then
+    echo "REDIS_NAMESPACE: sidekiq (default)"
+else
+    echo "REDIS_NAMESPACE: ${REDIS_NAMESPACE}"
+fi
+
 if [[ "${SIDEKIQ_CRON}" == "" ]]
 then
     echo "SIDEKIQ_CRON: false (default)"
